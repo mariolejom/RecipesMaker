@@ -1,6 +1,7 @@
 import kotlin.test.assertEquals
 
 fun main(args: Array<String>) {
+    //Raw String
     val msgEntrada = """
         :: Bienvenido a Recipe Maker ::
 
@@ -11,11 +12,13 @@ fun main(args: Array<String>) {
         Ingrese su opción: 
     """.trimIndent()
 
+    //Ciclo con label para llamado, redundante pero con motivo académico
     programaCocina@ do {
         print(msgEntrada)
         val response:String? = readLine()
+        //Operador Elvis para manejar nulos y evitar excepciones
         val reResponse:Int = response?.toIntOrNull() ?: 0
-
+        //When funciona como Switch
         when(reResponse){
             1 -> {
                 makeRecipe()
@@ -36,11 +39,14 @@ fun main(args: Array<String>) {
     }while (!reResponse.equals(3))
 }
 
+//Funciones
 fun makeRecipe() {
+    //Definición del array
     val ingredientes = arrayOf("Agua", "Leche", "Carne", "Verduras", "Frutas", "Cereal", "Huevos", "Aceite")
     println("""
 Hacer receta
 Selecciona por categoría el ingrediente que buscas""")
+    //Recorrer array imprimiendo el index
     for ((index, ingrediente) in ingredientes.withIndex()){
         println("${index + 1}. $ingrediente")
     }
