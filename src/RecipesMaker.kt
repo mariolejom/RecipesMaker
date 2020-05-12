@@ -1,7 +1,6 @@
 import kotlin.test.assertEquals
 
 fun main(args: Array<String>) {
-    val ingredientes: List<String> = listOf<String>("Agua", "Leche", "Carne", "Verduras", "Frutas", "Cereal", "Huevos", "Aceite")
     val msgEntrada = """
         :: Bienvenido a Recipe Maker ::
 
@@ -19,12 +18,11 @@ fun main(args: Array<String>) {
 
         when(reResponse){
             1 -> {
-                println("Vas hacer una receta con los siguientes ingredientes:\n${ingredientes}" +
-                        "\n................\n................\n\n")
+                makeRecipe()
                 continue@programaCocina
             }
             2 -> {
-                println("Tus recetas son: \n...\n...\n...\n\n")
+                viewRecipe()
                 continue@programaCocina
             }
             3 -> {
@@ -36,4 +34,19 @@ fun main(args: Array<String>) {
             }
         }
     }while (!reResponse.equals(3))
+}
+
+fun makeRecipe() {
+    val ingredientes = arrayOf("Agua", "Leche", "Carne", "Verduras", "Frutas", "Cereal", "Huevos", "Aceite")
+    println("""
+Hacer receta
+Selecciona por categoría el ingrediente que buscas""")
+    for ((index, ingrediente) in ingredientes.withIndex()){
+        println("${index + 1}. $ingrediente")
+    }
+    println("\n")
+}
+
+fun viewRecipe() {
+    println("\nVer mis recetas\n")
 }

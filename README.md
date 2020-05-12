@@ -1,2 +1,2 @@
 # RecipesMaker
-Reto 1 de curso básico de Kotlin
+Reto del curso básico de Kotlin de Platzi
