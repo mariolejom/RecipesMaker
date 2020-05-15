@@ -1,3 +1,5 @@
+import model.Cereal
+import model.Fruits
 import kotlin.test.assertEquals
 
 fun main(args: Array<String>) {
@@ -50,9 +52,34 @@ Selecciona por categoría el ingrediente que buscas""")
     for ((index, ingrediente) in ingredientes.withIndex()){
         println("${index + 1}. $ingrediente")
     }
-    println("\n")
+    print("Ingresa una opción de categoría: ")
+    val response:String? = readLine()
+    //Operador Elvis para manejar nulos y evitar excepciones
+    val reResponse:Int = response?.toIntOrNull() ?: 0
+    //Envío de datos a función
+    viewIngredientsCategory(reResponse)
 }
 
 fun viewRecipe() {
     println("\nVer mis recetas\n")
+}
+
+fun viewIngredientsCategory(reResponse: Int) {
+    when(reResponse){
+        1 -> println("Solo está de frutas y cereales (5 o 6)")
+        2 -> println("Solo está de frutas y cereales (5 o 6)")
+        3 -> println("Solo está de frutas y cereales (5 o 6)")
+        4 -> println("Solo está de frutas y cereales (5 o 6)")
+        5 -> {
+            val fruits = Fruits(1.0)
+            fruits.read(fruits.listCatSelected)
+        }
+        6 -> {
+            val cereal = Cereal(1.0)
+            cereal.read(cereal.listCatSelected)
+        }
+        7 -> println("Solo está de frutas y cereales (5 o 6)")
+        8 -> println("Solo está de frutas y cereales (5 o 6)")
+        else -> println("Ingresa una opción correcta")
+    }
 }
