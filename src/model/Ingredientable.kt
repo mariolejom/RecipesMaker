@@ -2,10 +2,8 @@ package model
 
 interface Ingredientable {
 
-    fun read(listCatSelected: ArrayList<String>){
+    fun read(listCatSelected: HashMap<Int, String>){
         println("Los ingredientes de esa categoría para escoger son:")
-        for ((index, list) in listCatSelected.withIndex()){
-            println("${index + 1}. $list")
-        }
+        listCatSelected.forEach { t, u -> println("$t. $u") }
     }
 }

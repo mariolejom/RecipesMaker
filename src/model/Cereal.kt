@@ -1,7 +1,7 @@
 package model
 
-class Cereal(quantity: Double): Ingredients(quantity), Ingredientable{
+class Cereal(): Ingredients(), Ingredientable{
 
-    val listCatSelected: ArrayList<String> = arrayListOf("Avena", "Trigo", "Arroz", "Maíz")
+    val listCatSelected = hashMapOf<Int, String>(1 to "Avena",2 to "Trigo", 3 to "Arroz", 4 to "Maíz")
 
 }

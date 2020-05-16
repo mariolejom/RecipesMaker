@@ -1,6 +1,8 @@
 import model.Cereal
 import model.Fruits
+import model.Recipe
 import kotlin.test.assertEquals
+var receipeAux: String = ""
 
 fun main(args: Array<String>) {
     //Raw String
@@ -62,6 +64,7 @@ Selecciona por categoría el ingrediente que buscas""")
 
 fun viewRecipe() {
     println("\nVer mis recetas\n")
+    Recipe().readRecipe()
 }
 
 fun viewIngredientsCategory(reResponse: Int) {
@@ -71,15 +74,40 @@ fun viewIngredientsCategory(reResponse: Int) {
         3 -> println("Solo está de frutas y cereales (5 o 6)")
         4 -> println("Solo está de frutas y cereales (5 o 6)")
         5 -> {
-            val fruits = Fruits(1.0)
+            val fruits = Fruits()
             fruits.read(fruits.listCatSelected)
         }
         6 -> {
-            val cereal = Cereal(1.0)
+            val cereal = Cereal()
             cereal.read(cereal.listCatSelected)
+            receipeAux += "${cereal.listCatSelected[opReceta()]} "
         }
         7 -> println("Solo está de frutas y cereales (5 o 6)")
         8 -> println("Solo está de frutas y cereales (5 o 6)")
         else -> println("Ingresa una opción correcta")
+    }
+    moreIngredients()
+}
+
+fun opReceta(): Int {
+    print("Qué deseas utilizar: ")
+    println("Cualquier tecla fuera del menú para salir")
+    val response:String? = readLine()
+    //Operador Elvis para manejar nulos y evitar excepciones
+    val reResponse:Int = response?.toIntOrNull() ?: 0
+    return reResponse
+}
+
+fun moreIngredients(){
+    println("Ingresar otro ingrediente: (Si/No)")
+    val response:String? = readLine()
+    //Operador Elvis para manejar nulos y evitar excepciones
+    val reResponse:String = response ?: "No"
+    if (reResponse.equals("Si")){
+        makeRecipe()
+    } else {
+        println(receipeAux)
+        Recipe().createRecipe(receipeAux)
+        receipeAux = ""
     }
 }

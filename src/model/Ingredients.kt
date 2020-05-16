@@ -1,5 +1,5 @@
 package model
 
-abstract class Ingredients (var quantity: Double){
+abstract class Ingredients (){
 
 }
